@@ -1,0 +1,1731 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>海角黑料网站 - 影像社区_真实故事与原创内容平台</title>
+<meta name="description" content="海角黑料网站是聚焦真实故事与影像表达的原创视频社区官网，汇聚创作者第一手记录、深度访谈与话题现场，以品质内容与多元表达陪伴每一位观众。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23141b2c'/%3E%3Cpath d='M16 44c8-18 14-24 22-28' stroke='%23ff5a36' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='44' cy='18' r='6' fill='%23ffd166'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --hj-ink:#141b2c;
+    --hj-ink-2:#1f2a44;
+    --hj-paper:#f5f6fa;
+    --hj-card:#ffffff;
+    --hj-accent:#ff5a36;
+    --hj-accent-2:#ffd166;
+    --hj-cyan:#2ec4b6;
+    --hj-muted:#5b6478;
+    --hj-line:#e3e6ef;
+    --hj-shadow:0 10px 30px rgba(20,27,44,.10);
+    --hj-radius:16px;
+    --hj-head-h:64px;
+    --hj-notice-h:40px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    color:var(--hj-ink);
+    background:var(--hj-paper);
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  h1,h2,h3,h4,p,ul,ol,figure,blockquote{margin:0;}
+  ul,ol{padding:0;list-style:none;}
+  button{font-family:inherit;cursor:pointer;border:none;background:none;color:inherit;}
+
+  /* ---------- 吸顶区 ---------- */
+  .hj-sticky-zone{
+    position:sticky;
+    top:0;
+    z-index:120;
+  }
+  .hj-notice-bar{
+    height:var(--hj-notice-h);
+    display:flex;
+    align-items:center;
+    gap:12px;
+    padding:0 20px;
+    background:linear-gradient(90deg,var(--hj-ink) 0%,#26304a 60%,#1c2436 100%);
+    color:#eef1f8;
+    font-size:13.5px;
+    overflow:hidden;
+    white-space:nowrap;
+  }
+  .hj-notice-bar__tag{
+    flex:0 0 auto;
+    background:var(--hj-accent);
+    color:#fff;
+    font-size:12px;
+    letter-spacing:.08em;
+    padding:2px 9px;
+    border-radius:999px;
+  }
+  .hj-notice-bar__roll{
+    position:relative;
+    flex:1 1 auto;
+    overflow:hidden;
+    height:100%;
+  }
+  .hj-notice-bar__track{
+    position:absolute;
+    inset:0;
+    display:flex;
+    align-items:center;
+    transition:transform .5s ease;
+  }
+  .hj-notice-bar__item{width:100%;height:100%;display:flex;align-items:center;gap:10px;}
+  .hj-notice-bar__item b{color:var(--hj-accent-2);font-weight:600;}
+  .hj-notice-bar__btn{
+    flex:0 0 auto;
+    font-size:12px;
+    border:1px solid rgba(255,255,255,.32);
+    padding:3px 10px;
+    border-radius:999px;
+    color:#fff;
+    transition:.2s;
+  }
+  .hj-notice-bar__btn:hover{background:rgba(255,255,255,.15);}
+
+  .hj-site-header{
+    height:var(--hj-head-h);
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--hj-line);
+  }
+  .hj-header-inner{
+    max-width:1200px;
+    margin:0 auto;
+    height:100%;
+    padding:0 20px;
+    display:flex;
+    align-items:center;
+    gap:22px;
+  }
+  .hj-brand{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex:0 0 auto;
+  }
+  .hj-brand__mark{
+    width:36px;height:36px;border-radius:11px;
+    background:var(--hj-ink);
+    display:grid;place-items:center;
+    color:var(--hj-accent);
+    font-weight:800;
+    font-size:15px;
+    letter-spacing:.02em;
+  }
+  .hj-brand__text{display:flex;flex-direction:column;line-height:1.15;}
+  .hj-brand__name{font-size:16.5px;font-weight:800;letter-spacing:.02em;}
+  .hj-brand__sub{font-size:10.5px;color:var(--hj-muted);letter-spacing:.22em;}
+
+  .hj-nav{flex:1 1 auto;}
+  .hj-nav__list{display:flex;align-items:center;gap:4px;flex-wrap:wrap;}
+  .hj-nav__link{
+    display:inline-block;
+    font-size:14.5px;
+    padding:7px 12px;
+    border-radius:9px;
+    color:#3a4358;
+    transition:.18s;
+  }
+  .hj-nav__link:hover{background:#eef1f8;color:var(--hj-ink);}
+  .hj-nav__link.is-active{color:var(--hj-accent);font-weight:700;background:#fff1ed;}
+
+  .hj-header-tools{display:flex;align-items:center;gap:10px;flex:0 0 auto;}
+  .hj-search{
+    display:flex;align-items:center;
+    border:1px solid var(--hj-line);
+    background:#f9fafc;
+    border-radius:999px;
+    padding:5px 6px 5px 14px;
+    gap:6px;
+    transition:.2s;
+  }
+  .hj-search:focus-within{border-color:var(--hj-accent);background:#fff;box-shadow:0 0 0 3px rgba(255,90,54,.12);}
+  .hj-search__input{
+    border:none;background:transparent;outline:none;
+    width:130px;font-size:13.5px;color:var(--hj-ink);
+  }
+  .hj-search__input::placeholder{color:#9aa2b5;}
+  .hj-search__btn{
+    background:var(--hj-ink);color:#fff;
+    font-size:12.5px;padding:6px 13px;border-radius:999px;transition:.2s;
+  }
+  .hj-search__btn:hover{background:var(--hj-accent);}
+  .hj-search-feedback{
+    position:absolute;
+    margin-top:6px;
+    font-size:12px;
+    background:#fff;
+    border:1px solid var(--hj-line);
+    border-radius:10px;
+    padding:6px 10px;
+    box-shadow:var(--hj-shadow);
+    display:none;
+    z-index:130;
+  }
+  .hj-search-feedback.is-show{display:block;}
+  .hj-burger{
+    display:none;
+    width:40px;height:40px;border-radius:10px;
+    border:1px solid var(--hj-line);
+    align-items:center;justify-content:center;
+    flex-direction:column;gap:4px;
+  }
+  .hj-burger span{display:block;width:18px;height:2px;background:var(--hj-ink);border-radius:2px;transition:.2s;}
+  .hj-burger.is-open span:nth-child(1){transform:translateY(6px) rotate(45deg);}
+  .hj-burger.is-open span:nth-child(2){opacity:0;}
+  .hj-burger.is-open span:nth-child(3){transform:translateY(-6px) rotate(-45deg);}
+
+  /* 锚点偏移 */
+  section[id], div[id].hj-anchor{scroll-margin-top:calc(var(--hj-head-h) + var(--hj-notice-h) + 12px);}
+
+  /* ---------- 通用容器 ---------- */
+  .hj-wrap{max-width:1200px;margin:0 auto;padding:0 20px;}
+  .hj-section{padding:64px 0;}
+  .hj-section--tight{padding:44px 0;}
+  .hj-section--dark{
+    background:var(--hj-ink);
+    color:#e9edf6;
+  }
+  .hj-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:30px;flex-wrap:wrap;}
+  .hj-eyebrow{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12.5px;letter-spacing:.16em;color:var(--hj-accent);
+    font-weight:700;text-transform:uppercase;
+  }
+  .hj-eyebrow::before{content:"";width:22px;height:2px;background:var(--hj-accent);display:inline-block;}
+  .hj-h2{font-size:clamp(22px,3vw,30px);line-height:1.35;letter-spacing:.01em;font-weight:800;}
+  .hj-h2 em{font-style:normal;color:var(--hj-accent);}
+  .hj-section-desc{color:var(--hj-muted);font-size:14.5px;max-width:620px;margin-top:8px;}
+  .hj-section--dark .hj-section-desc{color:#a9b3c8;}
+  .hj-section--dark .hj-eyebrow{color:var(--hj-accent-2);}
+  .hj-section--dark .hj-eyebrow::before{background:var(--hj-accent-2);}
+
+  .hj-btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 22px;border-radius:999px;
+    font-size:14.5px;font-weight:600;
+    transition:.2s;
+    border:1px solid transparent;
+  }
+  .hj-btn--primary{background:var(--hj-accent);color:#fff;box-shadow:0 8px 20px rgba(255,90,54,.28);}
+  .hj-btn--primary:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(255,90,54,.36);}
+  .hj-btn--ghost{border-color:rgba(255,255,255,.35);color:#fff;}
+  .hj-btn--ghost:hover{background:rgba(255,255,255,.14);}
+  .hj-btn--line{border-color:var(--hj-line);background:#fff;color:var(--hj-ink);}
+  .hj-btn--line:hover{border-color:var(--hj-accent);color:var(--hj-accent);}
+  .hj-btn--sm{padding:7px 15px;font-size:13px;}
+
+  /* ---------- 首屏 ---------- */
+  .hj-hero{
+    background:
+      radial-gradient(1000px 420px at 88% -10%,rgba(46,196,182,.22),transparent 60%),
+      radial-gradient(900px 460px at -10% 10%,rgba(255,90,54,.20),transparent 62%),
+      linear-gradient(160deg,#141b2c 0%,#1b2338 52%,#232d47 100%);
+    color:#eef1f8;
+    padding:56px 0 66px;
+    position:relative;
+    overflow:hidden;
+  }
+  .hj-hero__grid{
+    display:grid;
+    grid-template-columns:1.08fr .92fr;
+    gap:48px;
+    align-items:center;
+  }
+  .hj-hero__badge{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:12.5px;letter-spacing:.1em;
+    background:rgba(255,255,255,.10);
+    border:1px solid rgba(255,255,255,.20);
+    padding:5px 13px;border-radius:999px;
+    color:#ffe9b0;
+    margin-bottom:18px;
+  }
+  .hj-hero h1{
+    font-size:clamp(30px,4.6vw,50px);
+    line-height:1.16;
+    font-weight:900;
+    letter-spacing:.01em;
+    margin-bottom:16px;
+  }
+  .hj-hero h1 span{color:var(--hj-accent-2);}
+  .hj-hero__lead{color:#c3cbdd;font-size:15.5px;max-width:560px;}
+  .hj-hero__desc{color:#9fa9c0;font-size:14px;margin-top:14px;max-width:580px;}
+  .hj-hero__actions{display:flex;gap:12px;margin-top:26px;flex-wrap:wrap;}
+  .hj-hero__stats{display:flex;gap:30px;margin-top:34px;flex-wrap:wrap;}
+  .hj-hero__stat-num{font-size:26px;font-weight:900;color:#fff;letter-spacing:.01em;}
+  .hj-hero__stat-num small{font-size:13px;font-weight:600;color:var(--hj-accent-2);margin-left:3px;}
+  .hj-hero__stat-label{font-size:12.5px;color:#9fa9c0;}
+
+  .hj-hero__visual{position:relative;}
+  .hj-hero__cover{
+    border-radius:20px;
+    overflow:hidden;
+    box-shadow:0 24px 60px rgba(0,0,0,.45);
+    border:1px solid rgba(255,255,255,.14);
+  }
+  .hj-hero__cover img{width:100%;height:auto;}
+  .hj-hero__float{
+    position:absolute;
+    left:-18px;bottom:-20px;
+    background:#fff;color:var(--hj-ink);
+    border-radius:14px;
+    padding:12px 16px;
+    box-shadow:var(--hj-shadow);
+    display:flex;align-items:center;gap:11px;
+    max-width:250px;
+  }
+  .hj-hero__float b{font-size:14px;display:block;}
+  .hj-hero__float i{font-style:normal;font-size:12px;color:var(--hj-muted);}
+  .hj-live-dot{width:9px;height:9px;border-radius:50%;background:var(--hj-accent);box-shadow:0 0 0 0 rgba(255,90,54,.6);animation:hjPulse 1.8s infinite;}
+  @keyframes hjPulse{
+    0%{box-shadow:0 0 0 0 rgba(255,90,54,.55);}
+    70%{box-shadow:0 0 0 12px rgba(255,90,54,0);}
+    100%{box-shadow:0 0 0 0 rgba(255,90,54,0);}
+  }
+
+  /* ---------- 关键词解析 ---------- */
+  .hj-about{
+    background:var(--hj-card);
+    border-radius:22px;
+    padding:44px 44px 40px;
+    box-shadow:var(--hj-shadow);
+    border:1px solid var(--hj-line);
+  }
+  .hj-about__cols{
+    columns:2;column-gap:44px;margin-top:22px;
+    font-size:14.8px;color:#39425a;
+  }
+  .hj-about__cols p{margin-bottom:16px;break-inside:avoid;}
+  .hj-about__cols h3{font-size:16px;font-weight:800;color:var(--hj-ink);margin:4px 0 8px;break-inside:avoid;}
+  .hj-about__cols strong{color:var(--hj-accent);}
+  .hj-about__kick{
+    display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:26px;
+  }
+  .hj-kick-item{
+    border-left:3px solid var(--hj-accent);
+    background:#f8f9fd;
+    border-radius:10px;
+    padding:13px 15px;
+  }
+  .hj-kick-item b{display:block;font-size:14px;margin-bottom:3px;}
+  .hj-kick-item span{font-size:12.5px;color:var(--hj-muted);}
+
+  /* ---------- 焦点内容 ---------- */
+  .hj-focus-grid{
+    display:grid;
+    grid-template-columns:1.35fr 1fr;
+    gap:22px;
+  }
+  .hj-focus-main{
+    position:relative;border-radius:18px;overflow:hidden;
+    background:#0f1524;color:#fff;
+    box-shadow:var(--hj-shadow);
+    min-height:360px;
+  }
+  .hj-focus-main img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0;opacity:.92;}
+  .hj-focus-main__body{
+    position:relative;z-index:2;
+    padding:26px;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    height:100%;min-height:360px;
+    background:linear-gradient(180deg,rgba(15,21,36,0) 30%,rgba(15,21,36,.86) 82%);
+  }
+  .hj-focus-main__title{font-size:23px;font-weight:800;line-height:1.35;margin:10px 0 8px;}
+  .hj-focus-main__desc{font-size:13.5px;color:#cbd3e4;max-width:520px;}
+  .hj-focus-side{display:grid;grid-template-rows:1fr 1fr;gap:22px;}
+  .hj-focus-mini{
+    display:grid;grid-template-columns:.95fr 1.05fr;gap:0;
+    background:#fff;border-radius:16px;overflow:hidden;
+    border:1px solid var(--hj-line);
+    box-shadow:0 6px 18px rgba(20,27,44,.06);
+    transition:.22s;
+  }
+  .hj-focus-mini:hover{transform:translateY(-3px);box-shadow:var(--hj-shadow);}
+  .hj-focus-mini__cover{position:relative;background:#e8ebf4;}
+  .hj-focus-mini__cover img{width:100%;height:100%;object-fit:cover;}
+  .hj-focus-mini__body{padding:16px 18px;display:flex;flex-direction:column;justify-content:center;}
+  .hj-focus-mini__title{font-size:15.5px;font-weight:800;line-height:1.4;}
+  .hj-focus-mini__meta{font-size:12px;color:var(--hj-muted);margin-top:6px;}
+
+  .hj-chip{
+    display:inline-block;font-size:11.5px;padding:3px 9px;border-radius:999px;
+    background:rgba(255,90,54,.12);color:var(--hj-accent);font-weight:700;
+    letter-spacing:.03em;
+  }
+  .hj-chip--cyan{background:rgba(46,196,182,.14);color:#159a8e;}
+  .hj-chip--dark{background:rgba(255,255,255,.16);color:#fff;}
+
+  /* ---------- 视频卡片流 ---------- */
+  .hj-filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px;}
+  .hj-filter{
+    font-size:13px;padding:7px 15px;border-radius:999px;
+    border:1px solid var(--hj-line);background:#fff;color:#454e64;transition:.2s;
+  }
+  .hj-filter:hover{border-color:var(--hj-accent);color:var(--hj-accent);}
+  .hj-filter.is-on{background:var(--hj-ink);color:#fff;border-color:var(--hj-ink);}
+
+  .hj-video-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:22px;
+  }
+  .hj-video-card{
+    background:#fff;border-radius:16px;overflow:hidden;
+    border:1px solid var(--hj-line);
+    box-shadow:0 5px 16px rgba(20,27,44,.05);
+    display:flex;flex-direction:column;
+    transition:.24s;
+  }
+  .hj-video-card:hover{transform:translateY(-5px);box-shadow:var(--hj-shadow);}
+  .hj-video-card__cover{position:relative;aspect-ratio:16/9;background:#dfe3ee;overflow:hidden;}
+  .hj-video-card__cover img{width:100%;height:100%;object-fit:cover;transition:.4s;}
+  .hj-video-card:hover .hj-video-card__cover img{transform:scale(1.05);}
+  .hj-video-card__tag{
+    position:absolute;top:10px;left:10px;
+    font-size:11.5px;padding:3px 9px;border-radius:6px;
+    background:rgba(20,27,44,.82);color:#fff;letter-spacing:.03em;
+  }
+  .hj-video-card__dur{
+    position:absolute;right:10px;bottom:10px;
+    font-size:11.5px;padding:2px 8px;border-radius:5px;
+    background:rgba(20,27,44,.78);color:#fff;
+  }
+  .hj-video-card__play{
+    position:absolute;inset:0;display:grid;place-items:center;
+    opacity:0;transition:.24s;background:rgba(20,27,44,.22);
+  }
+  .hj-video-card:hover .hj-video-card__play{opacity:1;}
+  .hj-video-card__play span{
+    width:48px;height:48px;border-radius:50%;
+    background:rgba(255,255,255,.94);color:var(--hj-accent);
+    display:grid;place-items:center;font-size:16px;padding-left:3px;
+  }
+  .hj-video-card__body{padding:15px 16px 14px;display:flex;flex-direction:column;gap:7px;flex:1;}
+  .hj-video-card__title{font-size:15.5px;font-weight:800;line-height:1.42;}
+  .hj-video-card__desc{font-size:12.8px;color:var(--hj-muted);line-height:1.6;flex:1;}
+  .hj-video-card__foot{
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
+    border-top:1px dashed var(--hj-line);padding-top:10px;margin-top:2px;
+  }
+  .hj-video-card__author{display:flex;align-items:center;gap:8px;font-size:12.5px;color:#4a5369;}
+  .hj-avatar{
+    width:26px;height:26px;border-radius:50%;
+    display:grid;place-items:center;font-size:11.5px;font-weight:800;color:#fff;
+    flex:0 0 auto;
+  }
+  .hj-video-card__act{display:flex;gap:4px;}
+  .hj-icon-btn{
+    display:inline-flex;align-items:center;gap:4px;
+    font-size:12px;color:#69718a;padding:4px 7px;border-radius:7px;transition:.18s;
+  }
+  .hj-icon-btn:hover{background:#f1f3f9;color:var(--hj-accent);}
+  .hj-icon-btn.is-liked{color:var(--hj-accent);font-weight:700;}
+  .hj-icon-btn.is-saved{color:#159a8e;font-weight:700;}
+
+  /* ---------- 专题 ---------- */
+  .hj-topic-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .hj-topic-card{
+    border-radius:16px;overflow:hidden;position:relative;
+    aspect-ratio:3/4;color:#fff;
+    box-shadow:0 8px 22px rgba(20,27,44,.14);
+    transition:.24s;
+  }
+  .hj-topic-card:hover{transform:translateY(-5px);}
+  .hj-topic-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;}
+  .hj-topic-card__body{
+    position:relative;z-index:2;height:100%;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:18px;
+    background:linear-gradient(180deg,rgba(10,15,26,0) 35%,rgba(10,15,26,.9) 88%);
+  }
+  .hj-topic-card__status{font-size:11.5px;color:var(--hj-accent-2);margin-bottom:6px;letter-spacing:.05em;}
+  .hj-topic-card__title{font-size:16.5px;font-weight:800;line-height:1.38;}
+  .hj-topic-card__desc{font-size:12.5px;color:#c7cfe0;margin-top:6px;line-height:1.55;}
+
+  /* ---------- 创作者 ---------- */
+  .hj-creator-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;}
+  .hj-creator-card{
+    background:#fff;border:1px solid var(--hj-line);border-radius:16px;
+    padding:20px 18px 16px;display:flex;flex-direction:column;gap:10px;
+    transition:.22s;
+  }
+  .hj-creator-card:hover{transform:translateY(-4px);box-shadow:var(--hj-shadow);border-color:#d9deea;}
+  .hj-creator-card__top{display:flex;align-items:center;gap:11px;}
+  .hj-creator-card__avatar{
+    width:48px;height:48px;border-radius:14px;
+    display:grid;place-items:center;color:#fff;font-weight:900;font-size:17px;
+    flex:0 0 auto;
+  }
+  .hj-creator-card__name{font-size:15px;font-weight:800;}
+  .hj-creator-card__field{font-size:12px;color:var(--hj-accent);font-weight:700;}
+  .hj-creator-card__bio{font-size:12.8px;color:var(--hj-muted);line-height:1.6;}
+  .hj-creator-card__nums{display:flex;gap:14px;font-size:12px;color:#5a6379;border-top:1px dashed var(--hj-line);padding-top:10px;}
+  .hj-creator-card__nums b{color:var(--hj-ink);font-size:13.5px;}
+
+  /* ---------- 评价 ---------- */
+  .hj-quote-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .hj-quote{
+    background:#fff;border:1px solid var(--hj-line);border-radius:16px;
+    padding:20px;position:relative;transition:.22s;
+  }
+  .hj-quote:hover{box-shadow:var(--hj-shadow);transform:translateY(-3px);}
+  .hj-quote::before{
+    content:"“";position:absolute;top:4px;right:16px;
+    font-size:48px;line-height:1;color:#eef1f8;font-weight:900;
+  }
+  .hj-quote__text{font-size:13.6px;color:#3c455c;line-height:1.75;position:relative;z-index:1;}
+  .hj-quote__who{display:flex;align-items:center;gap:9px;margin-top:14px;font-size:12.5px;color:var(--hj-muted);}
+  .hj-quote__stars{color:#f0a500;letter-spacing:1px;font-size:12px;}
+
+  /* ---------- 动态/日志 ---------- */
+  .hj-timeline{position:relative;padding-left:26px;}
+  .hj-timeline::before{
+    content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;
+    background:linear-gradient(180deg,var(--hj-accent),#e3e6ef);
+  }
+  .hj-timeline__item{position:relative;padding-bottom:22px;}
+  .hj-timeline__item:last-child{padding-bottom:0;}
+  .hj-timeline__item::before{
+    content:"";position:absolute;left:-25px;top:7px;
+    width:12px;height:12px;border-radius:50%;
+    background:#fff;border:3px solid var(--hj-accent);
+  }
+  .hj-timeline__date{font-size:12px;color:var(--hj-accent);font-weight:700;letter-spacing:.05em;}
+  .hj-timeline__title{font-size:15px;font-weight:800;margin:3px 0 4px;}
+  .hj-timeline__desc{font-size:13px;color:var(--hj-muted);line-height:1.65;}
+
+  /* ---------- 伙伴墙 ---------- */
+  .hj-partners{
+    display:grid;grid-template-columns:repeat(6,1fr);gap:12px;
+  }
+  .hj-partner{
+    background:#fff;border:1px solid var(--hj-line);border-radius:12px;
+    padding:16px 10px;text-align:center;
+    font-size:12.5px;color:#4a5369;font-weight:700;letter-spacing:.04em;
+    transition:.2s;
+  }
+  .hj-partner:hover{border-color:var(--hj-accent);color:var(--hj-accent);transform:translateY(-2px);}
+  .hj-partner small{display:block;font-weight:400;font-size:11px;color:#98a0b3;margin-top:3px;letter-spacing:0;}
+
+  /* ---------- FAQ ---------- */
+  .hj-faq{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:10px;}
+  .hj-faq details{
+    background:#fff;border:1px solid var(--hj-line);border-radius:12px;
+    padding:0 18px;transition:.2s;
+  }
+  .hj-faq details[open]{border-color:var(--hj-accent);box-shadow:0 6px 18px rgba(255,90,54,.08);}
+  .hj-faq summary{
+    list-style:none;cursor:pointer;
+    font-size:14.5px;font-weight:700;padding:15px 0;
+    display:flex;align-items:center;justify-content:space-between;gap:12px;
+  }
+  .hj-faq summary::-webkit-details-marker{display:none;}
+  .hj-faq summary::after{
+    content:"+";font-size:18px;color:var(--hj-accent);font-weight:400;transition:.2s;
+  }
+  .hj-faq details[open] summary::after{transform:rotate(45deg);}
+  .hj-faq__ans{font-size:13.4px;color:var(--hj-muted);line-height:1.75;padding:0 0 16px;}
+
+  /* ---------- 联系/投稿 CTA ---------- */
+  .hj-cta-band{
+    background:
+      radial-gradient(700px 260px at 12% 20%,rgba(255,209,102,.20),transparent 62%),
+      radial-gradient(700px 300px at 88% 90%,rgba(46,196,182,.22),transparent 62%),
+      linear-gradient(135deg,#1a2236,#25304b);
+    color:#fff;border-radius:24px;padding:44px;
+    display:grid;grid-template-columns:1.2fr .8fr;gap:34px;align-items:center;
+  }
+  .hj-cta-band h2{font-size:clamp(20px,2.6vw,27px);line-height:1.4;font-weight:800;margin-bottom:10px;}
+  .hj-cta-band p{color:#c2cbdd;font-size:14px;max-width:560px;}
+  .hj-cta-actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:flex-end;}
+  .hj-contact-list{margin-top:22px;display:flex;flex-direction:column;gap:8px;font-size:13.5px;color:#c2cbdd;}
+  .hj-contact-list b{color:#fff;font-weight:700;}
+
+  /* ---------- 页脚 ---------- */
+  .hj-footer{background:#0f1524;color:#9aa4bb;padding:52px 0 26px;font-size:13.5px;}
+  .hj-footer__grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1.2fr;gap:32px;}
+  .hj-footer h4{color:#fff;font-size:14px;font-weight:800;margin-bottom:12px;letter-spacing:.04em;}
+  .hj-footer a:hover{color:var(--hj-accent-2);}
+  .hj-footer__links{display:flex;flex-direction:column;gap:8px;}
+  .hj-footer__brand{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+  .hj-footer__brand .hj-brand__name{color:#fff;}
+  .hj-footer__brand .hj-brand__sub{color:#6d7894;}
+  .hj-footer__bottom{
+    margin-top:34px;padding-top:18px;border-top:1px solid #232c42;
+    display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;font-size:12.5px;color:#69738d;
+  }
+
+  /* ---------- 回到顶部 & Toast ---------- */
+  .hj-backtop{
+    position:fixed;right:22px;bottom:22px;z-index:150;
+    width:46px;height:46px;border-radius:14px;
+    background:var(--hj-ink);color:#fff;
+    display:grid;place-items:center;font-size:17px;
+    box-shadow:0 10px 24px rgba(20,27,44,.28);
+    opacity:0;visibility:hidden;transform:translateY(10px);
+    transition:.25s;
+  }
+  .hj-backtop.is-show{opacity:1;visibility:visible;transform:translateY(0);}
+  .hj-backtop:hover{background:var(--hj-accent);}
+
+  .hj-toast{
+    position:fixed;left:50%;bottom:34px;
+    transform:translate(-50%,20px);
+    background:rgba(20,27,44,.94);color:#fff;
+    font-size:13.5px;padding:10px 20px;border-radius:999px;
+    z-index:200;opacity:0;visibility:hidden;transition:.28s;
+    box-shadow:0 12px 30px rgba(0,0,0,.3);
+    max-width:calc(100vw - 40px);text-align:center;
+  }
+  .hj-toast.is-show{opacity:1;visibility:visible;transform:translate(-50%,0);}
+
+  /* ---------- 弹窗 ---------- */
+  .hj-modal{
+    position:fixed;inset:0;z-index:220;
+    background:rgba(15,21,36,.62);
+    display:none;align-items:center;justify-content:center;
+    padding:20px;
+  }
+  .hj-modal.is-open{display:flex;}
+  .hj-modal__box{
+    background:#fff;border-radius:18px;max-width:460px;width:100%;
+    padding:26px;box-shadow:0 30px 70px rgba(0,0,0,.3);
+    max-height:84vh;overflow:auto;
+  }
+  .hj-modal__box h3{font-size:18px;font-weight:800;margin-bottom:12px;}
+  .hj-modal__box p{font-size:13.5px;color:var(--hj-muted);line-height:1.7;}
+  .hj-modal__field{margin-top:12px;}
+  .hj-modal__field label{font-size:12.5px;color:#4a5369;font-weight:700;display:block;margin-bottom:5px;}
+  .hj-modal__field input,.hj-modal__field textarea{
+    width:100%;border:1px solid var(--hj-line);border-radius:10px;
+    padding:9px 12px;font-size:13.5px;font-family:inherit;outline:none;
+    background:#f9fafc;transition:.2s;
+  }
+  .hj-modal__field input:focus,.hj-modal__field textarea:focus{border-color:var(--hj-accent);background:#fff;}
+  .hj-modal__field textarea{resize:vertical;min-height:86px;}
+  .hj-modal__foot{display:flex;justify-content:flex-end;gap:10px;margin-top:18px;}
+
+  .hj-share-row{display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;}
+  .hj-share-btn{
+    flex:1 1 0;min-width:100px;text-align:center;
+    border:1px solid var(--hj-line);border-radius:10px;padding:10px;
+    font-size:13px;font-weight:700;transition:.2s;
+  }
+  .hj-share-btn:hover{border-color:var(--hj-accent);color:var(--hj-accent);background:#fff6f3;}
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width:1024px){
+    .hj-hero__grid{grid-template-columns:1fr;gap:32px;}
+    .hj-about__cols{columns:1;}
+    .hj-about__kick{grid-template-columns:repeat(2,1fr);}
+    .hj-focus-grid{grid-template-columns:1fr;}
+    .hj-video-grid{grid-template-columns:repeat(2,1fr);}
+    .hj-topic-grid{grid-template-columns:repeat(2,1fr);}
+    .hj-creator-grid{grid-template-columns:repeat(2,1fr);}
+    .hj-quote-grid{grid-template-columns:repeat(2,1fr);}
+    .hj-partners{grid-template-columns:repeat(3,1fr);}
+    .hj-cta-band{grid-template-columns:1fr;padding:32px;}
+    .hj-cta-actions{justify-content:flex-start;}
+    .hj-footer__grid{grid-template-columns:1fr 1fr;}
+  }
+  @media (max-width:820px){
+    .hj-burger{display:flex;}
+    .hj-nav{
+      position:absolute;left:0;right:0;top:calc(var(--hj-head-h) + var(--hj-notice-h));
+      background:#fff;border-bottom:1px solid var(--hj-line);
+      box-shadow:0 16px 30px rgba(20,27,44,.10);
+      max-height:0;overflow:hidden;transition:max-height .3s ease;
+    }
+    .hj-nav.is-open{max-height:420px;overflow:auto;}
+    .hj-nav__list{flex-direction:column;align-items:stretch;gap:0;padding:10px 16px 16px;}
+    .hj-nav__link{padding:12px 8px;border-radius:8px;font-size:15px;}
+    .hj-header-inner{justify-content:space-between;}
+    .hj-search{display:none;}
+    .hj-search.is-mobile-show{display:flex;position:absolute;top:calc(var(--hj-head-h) + var(--hj-notice-h));left:0;right:0;margin:0 16px 12px;background:#fff;z-index:110;}
+    .hj-header-inner{position:relative;}
+  }
+  @media (max-width:640px){
+    .hj-section{padding:44px 0;}
+    .hj-about{padding:26px 20px;border-radius:16px;}
+    .hj-about__kick{grid-template-columns:1fr;}
+    .hj-video-grid{grid-template-columns:1fr;}
+    .hj-topic-grid{grid-template-columns:1fr;}
+    .hj-creator-grid{grid-template-columns:1fr;}
+    .hj-quote-grid{grid-template-columns:1fr;}
+    .hj-partners{grid-template-columns:repeat(2,1fr);}
+    .hj-focus-mini{grid-template-columns:1fr;}
+    .hj-focus-mini__cover{aspect-ratio:16/9;}
+    .hj-footer__grid{grid-template-columns:1fr;}
+    .hj-hero__stats{gap:18px;}
+    .hj-hero__float{left:8px;bottom:-16px;max-width:200px;}
+    .hj-notice-bar{font-size:12.5px;padding:0 12px;gap:8px;}
+    .hj-cta-band{padding:24px;border-radius:18px;}
+  }
+</style>
+<script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<!-- ========== 吸顶区：公告条 + 页头 ========== -->
+<div class="hj-sticky-zone">
+  <div class="hj-notice-bar" aria-label="站内公告">
+    <span class="hj-notice-bar__tag">官方公告</span>
+    <div class="hj-notice-bar__roll">
+      <div class="hj-notice-bar__track" id="hjNoticeTrack">
+        <div class="hj-notice-bar__item"><b>11月19日</b>《海角夜航·真实故事季》第二季 6 集上线，聚焦城市边缘的普通人自述。</div>
+        <div class="hj-notice-bar__item"><b>新条目</b>「海角观察」深度访谈第 41 期发布：一个人与一座旧港口的三十二年。</div>
+        <div class="hj-notice-bar__item"><b>征集</b>「我的第一手记录」影像征集开放报名，入选作品将获得官方推荐位。</div>
+      </div>
+    </div>
+    <button class="hj-notice-bar__btn" type="button" id="hjNoticeNext">下一条 ›</button>
+  </div>
+
+  <header class="hj-site-header">
+    <div class="hj-header-inner">
+      <a class="hj-brand" href="#hj-home" aria-label="海角黑料网站 首页">
+        <span class="hj-brand__mark">海</span>
+        <span class="hj-brand__text">
+          <span class="hj-brand__name">海角黑料</span>
+          <span class="hj-brand__sub">HAIJIAO · VIDEO</span>
+        </span>
+      </a>
+
+      <nav class="hj-nav" id="hjNav" aria-label="主导航">
+        <ul class="hj-nav__list">
+          <li><a class="hj-nav__link is-active" href="#hj-home">首页</a></li>
+          <li><a class="hj-nav__link" href="#hj-focus">影像焦点</a></li>
+          <li><a class="hj-nav__link" href="#hj-topics">专题企划</a></li>
+          <li><a class="hj-nav__link" href="#hj-creators">创作者</a></li>
+          <li><a class="hj-nav__link" href="#hj-updates">企业动态</a></li>
+          <li><a class="hj-nav__link" href="#hj-faq">帮助</a></li>
+          <li><a class="hj-nav__link" href="#hj-contact">联系</a></li>
+        </ul>
+      </nav>
+
+      <div class="hj-header-tools">
+        <div class="hj-search" id="hjSearch" style="position:relative;">
+          <input class="hj-search__input" id="hjSearchInput" type="search" placeholder="搜索内容、创作者、专题" aria-label="站内搜索">
+          <button class="hj-search__btn" type="button" id="hjSearchBtn">搜索</button>
+          <div class="hj-search-feedback" id="hjSearchFeedback" role="status"></div>
+        </div>
+        <button class="hj-burger" id="hjBurger" type="button" aria-label="展开导航" aria-expanded="false" aria-controls="hjNav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+</div>
+
+<main>
+  <!-- ========== 首屏 ========== -->
+  <section class="hj-hero" id="hj-home">
+    <div class="hj-wrap hj-hero__grid">
+      <div>
+        <span class="hj-hero__badge">● 海角黑料网站 · 品牌官网</span>
+        <h1>海角黑料网站</h1>
+        <p class="hj-hero__lead">一个把真实故事放在第一位的原创影像社区：我们相信，最有力的内容不是被包装出来的，而是被如实地记录下来的。</p>
+        <p class="hj-hero__desc">作为持续运营的视频品牌平台，海角黑料深耕人物访谈、城市现场与第一手记录三个垂直领域，以专业团队与企业级的内容标准，为创作者提供稳定、值得信赖的发布空间。</p>
+        <div class="hj-hero__actions">
+          <a class="hj-btn hj-btn--primary" href="#hj-focus">进入影像焦点</a>
+          <a class="hj-btn hj-btn--ghost" href="#hj-topics">浏览专题企划</a>
+          <button class="hj-btn hj-btn--ghost" type="button" id="hjOpenSubmit1">投稿入口</button>
+        </div>
+        <div class="hj-hero__stats">
+          <div>
+            <div class="hj-hero__stat-num" data-count="128600">128600<small>+</small></div>
+            <div class="hj-hero__stat-label">社区创作者</div>
+          </div>
+          <div>
+            <div class="hj-hero__stat-num" data-count="42">42<small>万</small></div>
+            <div class="hj-hero__stat-label">原创影像条目</div>
+          </div>
+          <div>
+            <div class="hj-hero__stat-num" data-count="9">9<small>年</small></div>
+            <div class="hj-hero__stat-label">持续运营时间</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hj-hero__visual">
+        <figure class="hj-hero__cover">
+          <svg viewBox="0 0 640 400" role="img" aria-label="海角黑料网站品牌主视觉：夜色海港与记录者的灯">
+            <defs>
+              <linearGradient id="hjSky" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#1b2338"/>
+                <stop offset="1" stop-color="#33405e"/>
+              </linearGradient>
+              <linearGradient id="hjSea" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#22304a"/>
+                <stop offset="1" stop-color="#0e1524"/>
+              </linearGradient>
+              <radialGradient id="hjGlow" cx="50%" cy="50%" r="50%">
+                <stop offset="0" stop-color="#ffd166" stop-opacity=".95"/>
+                <stop offset="1" stop-color="#ffd166" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <rect width="640" height="400" fill="url(#hjSky)"/>
+            <circle cx="470" cy="112" r="70" fill="url(#hjGlow)"/>
+            <circle cx="470" cy="112" r="26" fill="#ffe9b0"/>
+            <path d="M0 236 L96 196 L168 220 L262 178 L352 214 L438 186 L536 224 L640 190 L640 400 L0 400 Z" fill="#1a2438"/>
+            <rect y="262" width="640" height="138" fill="url(#hjSea)"/>
+            <g opacity=".55" stroke="#7fb4c9" stroke-width="2">
+              <line x1="40" y1="300" x2="150" y2="300"/>
+              <line x1="180" y1="320" x2="300" y2="320"/>
+              <line x1="360" y1="292" x2="470" y2="292"/>
+              <line x1="500" y1="336" x2="600" y2="336"/>
+            </g>
+            <g>
+              <path d="M150 262 l38 -12 l0 46 l-38 -10 z" fill="#ff5a36"/>
+              <rect x="186" y="228" width="7" height="70" fill="#e9edf6"/>
+              <circle cx="190" cy="224" r="9" fill="#ffd166"/>
+            </g>
+            <g opacity=".9">
+              <rect x="404" y="292" width="86" height="52" rx="8" fill="#141b2c" stroke="#3d4a67"/>
+              <rect x="414" y="302" width="66" height="32" rx="4" fill="#2ec4b6" opacity=".55"/>
+              <path d="M490 318 l26 -14 l0 28 z" fill="#ff5a36"/>
+            </g>
+            <g fill="#c7d2e6" opacity=".8">
+              <circle cx="72" cy="86" r="2.5"/>
+              <circle cx="132" cy="62" r="2"/>
+              <circle cx="204" cy="104" r="2.5"/>
+              <circle cx="286" cy="70" r="2"/>
+              <circle cx="344" cy="120" r="2.5"/>
+              <circle cx="574" cy="64" r="2"/>
+            </g>
+          </svg>
+        </figure>
+        <div class="hj-hero__float">
+          <span class="hj-live-dot"></span>
+          <div>
+            <b>《海角夜航》更新至第 6 集</b>
+            <i>品牌原创 · 每周三官方发布</i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 品牌介绍与关键词解析 ========== -->
+  <section class="hj-section">
+    <div class="hj-wrap">
+      <div class="hj-about">
+        <span class="hj-eyebrow">品牌定位与深度解析</span>
+        <h2 class="hj-h2" style="margin-top:10px;">把“海角黑料”做成一种<em>可信的记录方式</em></h2>
+        <div class="hj-section-desc">海角黑料网站是一个以真实故事为核心的原创视频品牌。我们不追逐喧闹，也不制造无依据的说法，而是把镜头交给当事人，让每一段影像都能被追溯、被核对、被认真对待。</div>
+
+        <div class="hj-about__cols">
+          <h3>一、品牌是什么：一个“记录型”视频社区</h3>
+          <p>海角黑料网站的名字里带着“海角”与“黑料”两个意象。海角指边缘、指远方、指那些不容易被推到台前的位置；黑料在这里不指代任何未经证实的传闻，而是我们对“未被打磨过的原始素材”的一种自嘲式称呼——那些粗糙、直接、还没来得及变成漂亮故事的第一手画面。它提醒我们，内容生态的根基从来不是精致的包装，而是真实的重量。</p>
+          <p>作为持续运营九年的视频品牌官网，海角黑料网站已经形成三条稳定的内容线：<strong>人物访谈</strong>、<strong>城市现场</strong>、<strong>第一手记录</strong>。三条线背后是同一套编辑原则：当事人优先、可核查优先、不夸大优先。我们相信，品质不是靠形容词堆出来的，而是靠每一次发布都经得起回看。</p>
+
+          <h3>二、我们为什么做这件事</h3>
+          <p>信息越多，信任越稀缺。海角黑料网站选择了一条慢一点的路：每一条重点内容都要经过选题会、事实核对、当事人确认三道流程；每一位入驻创作者都要完成实名认证与内容规范学习；每一次官方发布都附上素材来源说明。这些流程并不讨巧，但它们构成了企业级平台应有的基本盘。</p>
+          <p>我们更愿意把自己看作一个<strong>值得信赖的记录容器</strong>：创作者的影像在这里被妥善保存、被认真编排、被合理推荐；观众的注意力在这里被尊重，不被标题诱导消耗。用户至上是我们的运营底线，也是我们对长期口碑的承诺。</p>
+
+          <h3>三、内容生态如何运转</h3>
+          <p>海角黑料网站的内容生态由四部分组成：官方自制内容、签约创作者内容、社区投稿内容、合作机构内容。四类内容共享同一套审核标准与推荐机制，不存在“谁大谁优先”的规则。我们的编辑团队会在每季度发布内容生态报告，公开选题方向、审核数据与社区治理情况，接受创作者与观众的共同监督。这种透明并不容易，但它是品牌故事里必须写进去的一章。</p>
+          <p>在垂直领域深耕，是我们对“专业”二字的理解：不做全品类泛内容，只在人物、城市、记录三个方向持续投入。我们相信，影响力来自于长期在一个方向上不断加深，而不是同时铺开十个方向。</p>
+
+          <h3>四、创作者的成长路径</h3>
+          <p>一位新创作者进入海角黑料网站，通常要经历四个阶段：上传作品、进入新人榜、获得专题推荐、成为签约创作者。每个阶段都有明确的评估维度：内容真实度、叙事完成度、更新稳定性、社区互动质量。我们不承诺流量，但承诺规则公开、评审留痕、反馈及时。很多创作者在这里完成了从“随手记录”到“稳定表达”的转变，这种成长本身，就是平台存在的意义。</p>
+          <p>与此同时，我们也为创作者提供实用工具：脚本灵感库、标题建议、剪辑思路拆解、字幕规范模板。这些工具不替创作者思考，只帮他们把已经想清楚的事情表达得更清楚。</p>
+
+          <h3>五、面向观众的承诺</h3>
+          <p>海角黑料网站不设置复杂的观看门槛，也不以诱导点击换取短期数据。我们承诺：所有重点内容标注素材来源；所有访谈保留完整问答；所有争议内容附上多方说明；所有推荐都不可以购买。我们希望观众在这里获得的是<strong>判断力</strong>，而不仅仅是消遣。</p>
+          <p>如果你也相信真实的力量，欢迎从浏览一期访谈开始，或者直接上传你的第一段记录。海角黑料网站会一直在这里，做一个安静的、可靠的、持续运营的记录者。</p>
+        </div>
+
+        <div class="hj-about__kick">
+          <div class="hj-kick-item"><b>真实优先</b><span>重点内容三审三校，素材来源可追溯</span></div>
+          <div class="hj-kick-item"><b>创作者共生</b><span>规则公开、评审留痕、反馈及时</span></div>
+          <div class="hj-kick-item"><b>垂直深耕</b><span>人物、城市、记录三条内容主线</span></div>
+          <div class="hj-kick-item"><b>透明治理</b><span>季度内容生态报告，接受共同监督</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 影像焦点 ========== -->
+  <section class="hj-section hj-section--tight" id="hj-focus">
+    <div class="hj-wrap">
+      <div class="hj-section-head">
+        <div>
+          <span class="hj-eyebrow">FOCUS · 影像焦点</span>
+          <h2 class="hj-h2">本周重点推荐：来自现场的三组<em>第一手记录</em></h2>
+          <p class="hj-section-desc">编辑团队从本期投稿与自制内容中挑选出三组作品，题材不同，但都保留了完整的现场信息与当事人自述。</p>
+        </div>
+        <a class="hj-btn hj-btn--line hj-btn--sm" href="#hj-videos">查看全部内容 ›</a>
+      </div>
+
+      <div class="hj-focus-grid">
+        <article class="hj-focus-main">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 800 450'%3E%3Cdefs%3E%3ClinearGradient id='g1' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%2322304a'/%3E%3Cstop offset='1' stop-color='%230f1524'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='450' fill='url(%23g1)'/%3E%3Cg stroke='%23ff5a36' stroke-width='4' fill='none' opacity='.85'%3E%3Cpath d='M60 360 q120 -180 240 -70 t240 -120'/%3E%3C/g%3E%3Cg fill='%23ffd166'%3E%3Ccircle cx='300' cy='290' r='9'/%3E%3Ccircle cx='540' cy='170' r='7'/%3E%3C/g%3E%3Cg stroke='%232ec4b6' stroke-width='3' opacity='.6'%3E%3Cpath d='M80 120 h140'/%3E%3Cpath d='M80 140 h90'/%3E%3C/g%3E%3Cg fill='%23c7d2e6' opacity='.75'%3E%3Crect x='90' y='390' width='120' height='8' rx='4'/%3E%3Crect x='230' y='390' width='70' height='8' rx='4'/%3E%3C/g%3E%3C/svg%3E" alt="海角夜航真实故事季主视觉：夜色中的记录轨迹">
+          <div class="hj-focus-main__body">
+            <span class="hj-chip hj-chip--dark">品牌自制 · 人物访谈</span>
+            <h3 class="hj-focus-main__title">《海角夜航》第二季第 6 集：在码头守了三十年灯的人</h3>
+            <p class="hj-focus-main__desc">老陈是南方一座旧港口的守灯人，三十年里他见过上万条船出港。这一集我们跟着他走完了夜班的全过程，也听他说了说那些没有回来的船。全片无旁白，保留完整现场声。</p>
+            <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap;">
+              <button class="hj-btn hj-btn--primary hj-btn--sm" type="button" data-hj-open-comment="海角夜航第二季第6集">参与讨论</button>
+              <button class="hj-btn hj-btn--ghost hj-btn--sm" type="button" data-hj-share="《海角夜航》第二季第6集">分享这条内容</button>
+            </div>
+          </div>
+        </article>
+
+        <div class="hj-focus-side">
+          <article class="hj-focus-mini">
+            <figure class="hj-focus-mini__cover">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 450'%3E%3Crect width='400' height='450' fill='%23f0f3fa'/%3E%3Cg fill='%2322304a'%3E%3Crect x='50' y='180' width='300' height='180' rx='10'/%3E%3Crect x='80' y='120' width='120' height='70' rx='8' fill='%23ff5a36'/%3E%3C/g%3E%3Cg fill='%232ec4b6'%3E%3Ccircle cx='300' cy='110' r='34'/%3E%3C/g%3E%3Cg stroke='%23ffd166' stroke-width='4'%3E%3Cpath d='M110 320 h180'/%3E%3C/g%3E%3C/svg%3E" alt="城市夜班观察记录封面：便利店与夜归人">
+            </figure>
+            <div class="hj-focus-mini__body">
+              <span class="hj-chip hj-chip--cyan">城市现场</span>
+              <h3 class="hj-focus-mini__title">凌晨四点的便利店，藏着这座城市的另一份作息表</h3>
+              <p class="hj-focus-mini__meta">创作者「夜班阿岚」 · 记录 14 天 · 8.6 万次浏览</p>
+            </div>
+          </article>
+
+          <article class="hj-focus-mini">
+            <figure class="hj-focus-mini__cover">
+              <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 450'%3E%3Crect width='400' height='450' fill='%231a2236'/%3E%3Cg fill='none' stroke='%23ffd166' stroke-width='5' opacity='.9'%3E%3Ccircle cx='200' cy='200' r='96'/%3E%3Ccircle cx='200' cy='200' r='58'/%3E%3C/g%3E%3Cg fill='%23ff5a36'%3E%3Crect x='150' y='320' width='100' height='14' rx='7'/%3E%3C/g%3E%3Cg fill='%232ec4b6'%3E%3Ccircle cx='300' cy='330' r='10'/%3E%3Ccircle cx='112' cy='120' r='8'/%3E%3C/g%3E%3C/svg%3E" alt="旧物修复师手记封面：放大镜下的物件细节">
+            </figure>
+            <div class="hj-focus-mini__body">
+              <span class="hj-chip">第一手记录</span>
+              <h3 class="hj-focus-mini__title">旧物修复师手记：一枚停走二十年的手表如何重新走动</h3>
+              <p class="hj-focus-mini__meta">创作者「修表的老周」 · 12 分 40 秒 · 3.2 万次收藏</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 热门视频流 ========== -->
+  <section class="hj-section hj-section--tight" id="hj-videos">
+    <div class="hj-wrap">
+      <div class="hj-section-head">
+        <div>
+          <span class="hj-eyebrow">TRENDING · 社区热门</span>
+          <h2 class="hj-h2">正在被讨论的<em>原创内容</em></h2>
+          <p class="hj-section-desc">按标签筛选社区正在讨论的影像条目，每一条都来自真实投稿或官方自制。</p>
+        </div>
+      </div>
+
+      <div class="hj-filters" id="hjFilters" role="tablist" aria-label="内容标签筛选">
+        <button class="hj-filter is-on" type="button" data-filter="全部">全部</button>
+        <button class="hj-filter" type="button" data-filter="人物访谈">人物访谈</button>
+        <button class="hj-filter" type="button" data-filter="城市现场">城市现场</button>
+        <button class="hj-filter" type="button" data-filter="第一手记录">第一手记录</button>
+        <button class="hj-filter" type="button" data-filter="创作幕后">创作幕后</button>
+      </div>
+
+      <div class="hj-video-grid" id="hjVideoGrid">
+        <article class="hj-video-card" data-cat="人物访谈">
+          <div class="hj-video-card__cover">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%2322304a'/%3E%3Cg fill='%23ffd166'%3E%3Ccircle cx='160' cy='110' r='42'/%3E%3C/g%3E%3Cg fill='%23e9edf6'%3E%3Crect x='260' y='90' width='260' height='16' rx='8'/%3E%3Crect x='260' y='130' width='190' height='14' rx='7' opacity='.7'/%3E%3Crect x='260' y='164' width='220' height='14' rx='7' opacity='.5'/%3E%3C/g%3E%3Cg fill='%23ff5a36'%3E%3Crect x='120' y='250' width='400' height='10' rx='5'/%3E%3C/g%3E%3C/svg%3E" alt="人物访谈：聋人摄影师教我的三件事封面">
+            <span class="hj-video-card__tag">人物访谈</span>
+            <span class="hj-video-card__dur">18:22</span>
+            <span class="hj-video-card__play"><span>▶</span></span>
+          </div>
+          <div class="hj-video-card__body">
+            <h3 class="hj-video-card__title">聋人摄影师教我的三件事：关于安静、耐心与观察</h3>
+            <p class="hj-video-card__desc">一次长达四小时的无声对谈，我们用纸笔和手语翻译完成了它。她说，安静不是没有声音，而是能听见自己。</p>
+            <div class="hj-video-card__foot">
+              <span class="hj-video-card__author"><span class="hj-avatar" style="background:#ff5a36">林</span>林小树</span>
+              <span class="hj-video-card__act">
+                <button class="hj-icon-btn" type="button" data-hj-like>♡ 2.3k</button>
+                <button class="hj-icon-btn" type="button" data-hj-save>☆ 收藏</button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="hj-video-card" data-cat="城市现场">
+          <div class="hj-video-card__cover">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23161e30'/%3E%3Cg fill='%23ffd166' opacity='.9'%3E%3Crect x='60' y='60' width='120' height='240'/%3E%3Crect x='210' y='110' width='90' height='190'/%3E%3C/g%3E%3Cg fill='%232ec4b6'%3E%3Crect x='330' y='80' width='140' height='220'/%3E%3C/g%3E%3Cg fill='%23ff5a36'%3E%3Crect x='500' y='140' width='90' height='160'/%3E%3C/g%3E%3Cg stroke='%23e9edf6' stroke-width='3' opacity='.5'%3E%3Cpath d='M40 320 h560'/%3E%3C/g%3E%3C/svg%3E" alt="城市现场：老街最后一间理发店封面">
+            <span class="hj-video-card__tag">城市现场</span>
+            <span class="hj-video-card__dur">11:05</span>
+            <span class="hj-video-card__play"><span>▶</span></span>
+          </div>
+          <div class="hj-video-card__body">
+            <h3 class="hj-video-card__title">老街最后一间理发店：师傅说，剪了四十年，只学会慢</h3>
+            <p class="hj-video-card__desc">这条街要改造了，店里的转椅、镜子和价目牌都被拍进了片子。师傅不肯搬，他说手熟了，换个地方会抖。</p>
+            <div class="hj-video-card__foot">
+              <span class="hj-video-card__author"><span class="hj-avatar" style="background:#2ec4b6">阿</span>阿岚记录</span>
+              <span class="hj-video-card__act">
+                <button class="hj-icon-btn" type="button" data-hj-like>♡ 1.8k</button>
+                <button class="hj-icon-btn" type="button" data-hj-save>☆ 收藏</button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="hj-video-card" data-cat="第一手记录">
+          <div class="hj-video-card__cover">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23f3f5fb'/%3E%3Cg fill='none' stroke='%2322304a' stroke-width='6'%3E%3Ccircle cx='320' cy='180' r='90'/%3E%3Cpath d='M320 90 v180 M230 180 h180'/%3E%3C/g%3E%3Cg fill='%23ff5a36'%3E%3Ccircle cx='320' cy='180' r='14'/%3E%3C/g%3E%3Cg fill='%23ffd166'%3E%3Crect x='90' y='300' width='150' height='12' rx='6'/%3E%3C/g%3E%3Cg fill='%232ec4b6'%3E%3Crect x='410' y='300' width='140' height='12' rx='6'/%3E%3C/g%3E%3C/svg%3E" alt="第一手记录：我在二手市场蹲了三天封面">
+            <span class="hj-video-card__tag">第一手记录</span>
+            <span class="hj-video-card__dur">09:48</span>
+            <span class="hj-video-card__play"><span>▶</span></span>
+          </div>
+          <div class="hj-video-card__body">
+            <h3 class="hj-video-card__title">我在二手市场蹲了三天，记录了二十七件旧物的来处</h3>
+            <p class="hj-video-card__desc">每一件旧物背后都有人愿意讲两句。我们把摊主的口述原样剪进去，没有加旁白，也没有做结论。</p>
+            <div class="hj-video-card__foot">
+              <span class="hj-video-card__author"><span class="hj-avatar" style="background:#8f6fd8">周</span>周野的记录</span>
+              <span class="hj-video-card__act">
+                <button class="hj-icon-btn" type="button" data-hj-like>♡ 3.1k</button>
+                <button class="hj-icon-btn" type="button" data-hj-save>☆ 收藏</button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="hj-video-card" data-cat="创作幕后">
+          <div class="hj-video-card__cover">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%232a3550'/%3E%3Cg fill='%23ffd166' opacity='.85'%3E%3Crect x='70' y='70' width='70' height='180' rx='8'/%3E%3Crect x='160' y='110' width='70' height='140' rx='8'/%3E%3Crect x='250' y='50' width='70' height='200' rx='8'/%3E%3C/g%3E%3Cg fill='%23ff5a36'%3E%3Cpath d='M400 160 l110 60 l-110 60 z'/%3E%3C/g%3E%3Cg fill='%232ec4b6'%3E%3Crect x='70' y='290' width='300' height='10' rx='5'/%3E%3C/g%3E%3C/svg%3E" alt="创作幕后：一条三分钟片子的两百次剪辑封面">
+            <span class="hj-video-card__tag">创作幕后</span>
+            <span class="hj-video-card__dur">14:31</span>
+            <span class="hj-video-card__play"><span>▶</span></span>
+          </div>
+          <div class="hj-video-card__body">
+            <h3 class="hj-video-card__title">一条三分钟片子的两百次剪辑：我们把废稿全部放了出来</h3>
+            <p class="hj-video-card__desc">从素材到成片，这期把剪辑台上的犹豫、删掉的镜头和改过的配乐都保留下来，希望对新人有帮助。</p>
+            <div class="hj-video-card__foot">
+              <span class="hj-video-card__author"><span class="hj-avatar" style="background:#e28743">海</span>海角剪辑室</span>
+              <span class="hj-video-card__act">
+                <button class="hj-icon-btn" type="button" data-hj-like>♡ 2.6k</button>
+                <button class="hj-icon-btn" type="button" data-hj-save>☆ 收藏</button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="hj-video-card" data-cat="人物访谈">
+          <div class="hj-video-card__cover">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23f6efe4'/%3E%3Cg fill='%2322304a'%3E%3Ccircle cx='200' cy='150' r='60'/%3E%3Crect x='150' y='180' width='100' height='120' rx='26'/%3E%3C/g%3E%3Cg fill='%23ff5a36'%3E%3Ccircle cx='430' cy='140' r='48'/%3E%3C/g%3E%3Cg stroke='%232ec4b6' stroke-width='4' fill='none'%3E%3Cpath d='M340 250 q80 -40 160 0'/%3E%3C/g%3E%3C/svg%3E" alt="人物访谈：母女两代人的同一份职业封面">
+            <span class="hj-video-card__tag">人物访谈</span>
+            <span class="hj-video-card__dur">21:16</span>
+            <span class="hj-video-card__play"><span>▶</span></span>
+          </div>
+          <div class="hj-video-card__body">
+            <h3 class="hj-video-card__title">母女两代人的同一份职业：她说不想让女儿再走一遍</h3>
+            <p class="hj-video-card__desc">一场关于选择与传承的对谈。两代人的答案并不一致，但都在镜头里完整地说完了。</p>
+            <div class="hj-video-card__foot">
+              <span class="hj-video-card__author"><span class="hj-avatar" style="background:#159a8e">苏</span>苏木访谈</span>
+              <span class="hj-video-card__act">
+                <button class="hj-icon-btn" type="button" data-hj-like>♡ 4.0k</button>
+                <button class="hj-icon-btn" type="button" data-hj-save>☆ 收藏</button>
+              </span>
+            </div>
+          </div>
+        </article>
+
+        <article class="hj-video-card" data-cat="城市现场">
+          <div class="hj-video-card__cover">
+            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 640 360'%3E%3Crect width='640' height='360' fill='%23141b2c'/%3E%3Cg stroke='%23ffd166' stroke-width='3' opacity='.7'%3E%3Cpath d='M0 300 q80 -60 160 0 t160 0 t160 0 t160 0'/%3E%3C/g%3E%3Cg fill='%23ff5a36'%3E%3Crect x='260' y='80' width='120' height='150' rx='10'/%3E%3C/g%3E%3Cg fill='%232ec4b6'%3E%3Ccircle cx='120' cy='100' r='26'/%3E%3Ccircle cx='520' cy='120' r='18'/%3E%3C/g%3E%3C/svg%3E" alt="城市现场：末班车上的十二种睡姿封面">
+            <span class="hj-video-card__tag">城市现场</span>
+            <span class="hj-video-card__dur">07:52</span>
+            <span class="hj-video-card__play"><span>▶</span></span>
+          </div>
+          <div class="hj-video-card__body">
+            <h3 class="hj-video-card__title">末班车上的十二种睡姿：我们跟着夜班公交跑了七晚</h3>
+            <p class="hj-video-card__desc">没有采访，只有环境声。司机说，这条线他开了十一年，见过太多人在车上睡着坐过站。</p>
+            <div class="hj-video-card__foot">
+              <span class="hj-video-card__author"><span class="hj-avatar" style="background:#4a6fd8">夜</span>夜班公交计划</span>
+              <span class="hj-video-card__act">
+                <button class="hj-icon-btn" type="button" data-hj-like>♡ 1.5k</button>
+                <button class="hj-icon-btn" type="button" data-hj-save>☆ 收藏</button>
+              </span>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 专题企划 ========== -->
+  <section class="hj-section hj-section--dark" id="hj-topics">
+    <div class="hj-wrap">
+      <div class="hj-section-head">
+        <div>
+          <span class="hj-eyebrow">SERIES · 专题企划</span>
+          <h2 class="hj-h2">四条正在持续更新的<em>品牌专题</em></h2>
+          <p class="hj-section-desc">专题由官方编辑团队策划，邀请创作者共同完成。每个专题都有明确的记录对象与更新节奏，欢迎关注后续条目。</p>
+        </div>
+      </div>
+
+      <div class="hj-topic-grid">
+        <article class="hj-topic-card">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 540'%3E%3Cdefs%3E%3ClinearGradient id='t1' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%2322304a'/%3E%3Cstop offset='1' stop-color='%230d1220'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='400' height='540' fill='url(%23t1)'/%3E%3Cg fill='%23ffd166' opacity='.9'%3E%3Ccircle cx='300' cy='110' r='52'/%3E%3C/g%3E%3Cg stroke='%23ff5a36' stroke-width='4' fill='none'%3E%3Cpath d='M40 400 q90 -140 180 -60 t140 -90'/%3E%3C/g%3E%3Cg fill='%232ec4b6'%3E%3Crect x='40' y='450' width='200' height='10' rx='5'/%3E%3C/g%3E%3C/svg%3E" alt="专题海角夜航：夜色中的记录者">
+          <div class="hj-topic-card__body">
+            <span class="hj-topic-card__status">更新中 · 已更新 6 集</span>
+            <h3 class="hj-topic-card__title">海角夜航</h3>
+            <p class="hj-topic-card__desc">夜班工作者影像档案：守灯人、夜班护士、货车司机、便利店店员，记录城市入睡后的另一套秩序。</p>
+          </div>
+        </article>
+
+        <article class="hj-topic-card">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 540'%3E%3Crect width='400' height='540' fill='%23f3ede1'/%3E%3Cg fill='%2322304a'%3E%3Crect x='60' y='120' width='280' height='260' rx='14'/%3E%3C/g%3E%3Cg fill='%23ff5a36'%3E%3Crect x='90' y='160' width='120' height='80' rx='8'/%3E%3C/g%3E%3Cg fill='%232ec4b6'%3E%3Ccircle cx='290' cy='200' r='28'/%3E%3C/g%3E%3Cg stroke='%2322304a' stroke-width='4'%3E%3Cpath d='M90 300 h220 M90 330 h160'/%3E%3C/g%3E%3C/svg%3E" alt="专题旧物来处：物件背后的口述史">
+          <div class="hj-topic-card__body">
+            <span class="hj-topic-card__status">征集中 · 已收 38 条</span>
+            <h3 class="hj-topic-card__title">旧物来处</h3>
+            <p class="hj-topic-card__desc">一件旧物的流转，往往比人的履历更长。我们邀请创作者记录身边旧物的来处与去向，保留口述原文。</p>
+          </div>
+        </article>
+
+        <article class="hj-topic-card">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 540'%3E%3Crect width='400' height='540' fill='%231a2438'/%3E%3Cg fill='%232ec4b6' opacity='.8'%3E%3Crect x='50' y='90' width='60' height='360' rx='6'/%3E%3Crect x='130' y='150' width='60' height='300' rx='6'/%3E%3C/g%3E%3Cg fill='%23ffd166'%3E%3Crect x='210' y='60' width='60' height='390' rx='6'/%3E%3C/g%3E%3Cg fill='%23ff5a36'%3E%3Crect x='290' y='200' width='60' height='250' rx='6'/%3E%3C/g%3E%3C/svg%3E" alt="专题一个人与一座城：城市个体样本">
+          <div class="hj-topic-card__body">
+            <span class="hj-topic-card__status">更新中 · 已更新 12 期</span>
+            <h3 class="hj-topic-card__title">一个人与一座城</h3>
+            <p class="hj-topic-card__desc">每期只拍一个人，只讲他与这座城的关系。有人在城里出生，有人刚来三个月，答案各不相同。</p>
+          </div>
+        </article>
+
+        <article class="hj-topic-card">
+          <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 400 540'%3E%3Crect width='400' height='540' fill='%23f6f2fa'/%3E%3Cg fill='none' stroke='%238f6fd8' stroke-width='6'%3E%3Ccircle cx='200' cy='220' r='110'/%3E%3C/g%3E%3Cg fill='%23ff5a36'%3E%3Cpath d='M170 180 l80 40 l-80 40 z'/%3E%3C/g%3E%3Cg fill='%2322304a'%3E%3Crect x='80' y='400' width='240' height='12' rx='6'/%3E%3C/g%3E%3C/svg%3E" alt="专题剪辑台前：创作幕后方法拆解">
+          <div class="hj-topic-card__body">
+            <span class="hj-topic-card__status">连载 · 每周五更新</span>
+            <h3 class="hj-topic-card__title">剪辑台前</h3>
+            <p class="hj-topic-card__desc">把成片拆回素材，逐段讲解取舍逻辑。适合已有基础、想提升叙事完成度的创作者。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 创作者矩阵 ========== -->
+  <section class="hj-section" id="hj-creators">
+    <div class="hj-wrap">
+      <div class="hj-section-head">
+        <div>
+          <span class="hj-eyebrow">CREATORS · 创作者矩阵</span>
+          <h2 class="hj-h2">记录者名单：他们在海角黑料网站<em>持续更新</em></h2>
+          <p class="hj-section-desc">以下四位是本期推荐创作者，均已完成实名认证与内容规范学习。点击头像可查看简介。</p>
+        </div>
+        <a class="hj-btn hj-btn--line hj-btn--sm" href="#hj-contact">申请成为创作者 ›</a>
+      </div>
+
+      <div class="hj-creator-grid">
+        <article class="hj-creator-card">
+          <div class="hj-creator-card__top">
+            <button class="hj-creator-card__avatar" style="background:#ff5a36" type="button" data-hj-creator="林小树|人物访谈 · 无声影像|五年前开始用手语采访，擅长在安静的环境里捕捉人物表情。她相信沉默本身也是一种叙述。">林</button>
+            <div>
+              <div class="hj-creator-card__name">林小树</div>
+              <div class="hj-creator-card__field">人物访谈 · 无声影像</div>
+            </div>
+          </div>
+          <p class="hj-creator-card__bio">专注听障群体与少数职业的长期记录，作品节奏缓慢，保留大量呼吸间隙。</p>
+          <div class="hj-creator-card__nums">
+            <span>作品 <b>86</b></span>
+            <span>关注 <b>4.2 万</b></span>
+          </div>
+        </article>
+
+        <article class="hj-creator-card">
+          <div class="hj-creator-card__top">
+            <button class="hj-creator-card__avatar" style="background:#2ec4b6" type="button" data-hj-creator="阿岚记录|城市现场 · 夜班观察|连续三年拍摄城市夜班人群，习惯带着录音笔而不是补光灯出门。">阿</button>
+            <div>
+              <div class="hj-creator-card__name">阿岚记录</div>
+              <div class="hj-creator-card__field">城市现场 · 夜班观察</div>
+            </div>
+          </div>
+          <p class="hj-creator-card__bio">用长时间蹲守替代快剪，主张先听懂现场，再决定镜头放在哪里。</p>
+          <div class="hj-creator-card__nums">
+            <span>作品 <b>132</b></span>
+            <span>关注 <b>6.7 万</b></span>
+          </div>
+        </article>
+
+        <article class="hj-creator-card">
+          <div class="hj-creator-card__top">
+            <button class="hj-creator-card__avatar" style="background:#8f6fd8" type="button" data-hj-creator="周野的记录|第一手记录 · 旧物口述|前文物修复助理，现全职记录旧物流转中的口述故事，坚持不加旁白。">周</button>
+            <div>
+              <div class="hj-creator-card__name">周野的记录</div>
+              <div class="hj-creator-card__field">第一手记录 · 旧物口述</div>
+            </div>
+          </div>
+          <p class="hj-creator-card__bio">把镜头对准物，也对着讲物的人。所有口述均保留原文，不做二次概括。</p>
+          <div class="hj-creator-card__nums">
+            <span>作品 <b>64</b></span>
+            <span>关注 <b>3.1 万</b></span>
+          </div>
+        </article>
+
+        <article class="hj-creator-card">
+          <div class="hj-creator-card__top">
+            <button class="hj-creator-card__avatar" style="background:#e28743" type="button" data-hj-creator="海角剪辑室|创作幕后 · 方法拆解|官方剪辑团队账号，定期公开成片背后的素材取舍与结构设计。">海</button>
+            <div>
+              <div class="hj-creator-card__name">海角剪辑室</div>
+              <div class="hj-creator-card__field">创作幕后 · 方法拆解</div>
+            </div>
+          </div>
+          <p class="hj-creator-card__bio">官方团队账号，把剪辑台上的犹豫也当作内容的一部分公开出来。</p>
+          <div class="hj-creator-card__nums">
+            <span>作品 <b>210</b></span>
+            <span>关注 <b>12.4 万</b></span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 用户评价 ========== -->
+  <section class="hj-section hj-section--tight">
+    <div class="hj-wrap">
+      <div class="hj-section-head">
+        <div>
+          <span class="hj-eyebrow">VOICES · 社区口碑</span>
+          <h2 class="hj-h2">他们这样评价<em>海角黑料网站</em></h2>
+        </div>
+      </div>
+
+      <div class="hj-quote-grid">
+        <div class="hj-quote">
+          <p class="hj-quote__text">看了《海角夜航》守灯人那集，第一次觉得纪录片可以这么安静。没有煽情配乐，但看完之后坐了很久。这种内容在现在的平台上不多见了。</p>
+          <div class="hj-quote__who">
+            <span class="hj-avatar" style="background:#2ec4b6">陈</span>
+            <span>陈先生 · 观众</span>
+            <span class="hj-quote__stars">★★★★★</span>
+          </div>
+        </div>
+
+        <div class="hj-quote">
+          <p class="hj-quote__text">作为创作者，最直接的感受是反馈快。投稿后三天就收到了编辑的具体意见，不是模板回复，连第几分钟节奏拖了都标出来了。</p>
+          <div class="hj-quote__who">
+            <span class="hj-avatar" style="background:#ff5a36">林</span>
+            <span>林同学 · 入驻创作者</span>
+            <span class="hj-quote__stars">★★★★★</span>
+          </div>
+        </div>
+
+        <div class="hj-quote">
+          <p class="hj-quote__text">我比较在意来源标注。这个站的重点内容基本都会写清楚素材从哪来、当事人是否确认过，这点让人放心。希望一直保持。</p>
+          <div class="hj-quote__who">
+            <span class="hj-avatar" style="background:#8f6fd8">吴</span>
+            <span>吴女士 · 长期用户</span>
+            <span class="hj-quote__stars">★★★★☆</span>
+          </div>
+        </div>
+
+        <div class="hj-quote">
+          <p class="hj-quote__text">剪辑台前那个专题对我帮助特别大。以前总想着把素材填满，看完才明白留白也是叙事。现在我的片子时长反而变长了，但没人快进。</p>
+          <div class="hj-quote__who">
+            <span class="hj-avatar" style="background:#e28743">赵</span>
+            <span>赵一鸣 · 独立创作者</span>
+            <span class="hj-quote__stars">★★★★★</span>
+          </div>
+        </div>
+
+        <div class="hj-quote">
+          <p class="hj-quote__text">提个小建议，希望移动端的筛选能记住上次选择。整体体验很好，加载也快，晚上躺床上刷能刷很久。</p>
+          <div class="hj-quote__who">
+            <span class="hj-avatar" style="background:#4a6fd8">何</span>
+            <span>何同学 · 学生</span>
+            <span class="hj-quote__stars">★★★★☆</span>
+          </div>
+        </div>
+
+        <div class="hj-quote">
+          <p class="hj-quote__text">我们是做在地文化研究的小机构，和海角黑料网站合作过一期城市现场。从选题沟通到成片校对都很专业，没有为了流量改动事实。</p>
+          <div class="hj-quote__who">
+            <span class="hj-avatar" style="background:#159a8e">研</span>
+            <span>某城市文化研究室 · 合作机构</span>
+            <span class="hj-quote__stars">★★★★★</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 企业动态 + 伙伴墙 ========== -->
+  <section class="hj-section" id="hj-updates">
+    <div class="hj-wrap">
+      <div style="display:grid;grid-template-columns:1.15fr .85fr;gap:40px;" class="hj-updates-grid">
+        <div>
+          <span class="hj-eyebrow">NEWS · 企业动态</span>
+          <h2 class="hj-h2" style="margin:10px 0 24px;">官方发布与<em>平台更新</em></h2>
+
+          <div class="hj-timeline">
+            <div class="hj-timeline__item">
+              <div class="hj-timeline__date">2026 年 11 月 19 日</div>
+              <h3 class="hj-timeline__title">《海角夜航》第二季收官，六集完整上线</h3>
+              <p class="hj-timeline__desc">本季共记录六位夜班工作者，全部素材经当事人确认后发布。专题页同步更新幕后手记与拍摄清单。</p>
+            </div>
+            <div class="hj-timeline__item">
+              <div class="hj-timeline__date">2026 年 11 月 08 日</div>
+              <h3 class="hj-timeline__title">「我的第一手记录」影像征集开放报名</h3>
+              <p class="hj-timeline__desc">面向所有实名创作者开放，征集期六周。入选作品将获得官方推荐位与剪辑室一对一沟通机会。</p>
+            </div>
+            <div class="hj-timeline__item">
+              <div class="hj-timeline__date">2026 年 10 月 27 日</div>
+              <h3 class="hj-timeline__title">内容生态季度报告（第三季度）发布</h3>
+              <p class="hj-timeline__desc">报告公开了选题方向、审核数据与社区治理情况，并说明了下季度在事实核对流程上的调整。</p>
+            </div>
+            <div class="hj-timeline__item">
+              <div class="hj-timeline__date">2026 年 10 月 12 日</div>
+              <h3 class="hj-timeline__title">创作工具更新：脚本灵感库新增三类结构模板</h3>
+              <p class="hj-timeline__desc">新增人物专访、蹲守观察、物件口述三类结构模板，创作者可在投稿页直接调用。</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <span class="hj-eyebrow">PARTNERS · 合作伙伴</span>
+          <h2 class="hj-h2" style="margin:10px 0 24px;">与我们一起<em>认真记录</em></h2>
+          <div class="hj-partners">
+            <div class="hj-partner">南岸文化<small>城市研究</small></div>
+            <div class="hj-partner">旧物志<small>口述档案</small></div>
+            <div class="hj-partner">夜行社<small>夜间观察</small></div>
+            <div class="hj-partner">光年影像<small>器材支持</small></div>
+            <div class="hj-partner">巷口书店<small>线下放映</small></div>
+            <div class="hj-partner">手艺人间<small>非遗记录</small></div>
+          </div>
+
+          <div style="margin-top:24px;background:#fff;border:1px solid var(--hj-line);border-radius:16px;padding:20px;">
+            <h3 style="font-size:15px;font-weight:800;margin-bottom:8px;">合作与授权说明</h3>
+            <p style="font-size:13px;color:var(--hj-muted);line-height:1.7;">海角黑料网站所有官方自制内容版权归平台所有，合作转载须取得书面授权并注明来源。机构合作、联合策划、线下放映等事宜，可通过下方联系方式与我们沟通。</p>
+            <button class="hj-btn hj-btn--line hj-btn--sm" type="button" id="hjOpenSubmit2" style="margin-top:12px;">提交合作意向</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FAQ ========== -->
+  <section class="hj-section hj-section--tight" id="hj-faq">
+    <div class="hj-wrap">
+      <div class="hj-section-head" style="justify-content:center;text-align:center;">
+        <div>
+          <span class="hj-eyebrow">FAQ · 帮助中心</span>
+          <h2 class="hj-h2">关于<em>平台使用</em>的常见问题</h2>
+          <p class="hj-section-desc" style="margin-left:auto;margin-right:auto;">以下问题整理自社区反馈，若仍未解决，可通过页面底部联系方式与我们取得联系。</p>
+        </div>
+      </div>
+
+      <div class="hj-faq">
+        <details open>
+          <summary>海角黑料网站是一个什么样的平台？</summary>
+          <div class="hj-faq__ans">海角黑料网站是一个以真实故事为核心的原创视频社区与品牌官网，主要收录人物访谈、城市现场与第一手记录三类内容。平台由官方编辑团队与实名创作者共同供给内容，所有重点内容均经过事实核对流程。</div>
+        </details>
+        <details>
+          <summary>如何成为入驻创作者？需要满足哪些条件？</summary>
+          <div class="hj-faq__ans">完成实名认证、阅读并同意内容规范、提交至少一条原创作品即可进入审核。审核维度包括内容真实度、叙事完成度、更新稳定性与社区互动质量，通常五个工作日内反馈结果。</div>
+        </details>
+        <details>
+          <summary>投稿的作品会经过哪些流程？</summary>
+          <div class="hj-faq__ans">投稿后先进入初审，检查素材来源与版权信息；通过后进入编辑复审，评估叙事完整度并给出具体修改建议；创作者确认修改后进入排版与发布。整个流程可在个人中心查看进度。</div>
+        </details>
+        <details>
+          <summary>平台如何保证内容的真实与可靠？</summary>
+          <div class="hj-faq__ans">我们采用三重机制：素材来源登记、当事人确认、编辑复核。重点内容会附上来源说明，访谈类内容保留完整问答，争议内容附多方说明。对于无法核实的信息，平台不予推荐。</div>
+        </details>
+        <details>
+          <summary>我可以转载平台上的内容吗？</summary>
+          <div class="hj-faq__ans">官方自制内容需取得书面授权并注明来源；创作者内容请联系创作者本人并获得同意。用于商业用途的转载，还须同时取得平台与创作者双方授权。</div>
+        </details>
+        <details>
+          <summary>遇到不实信息或不当内容怎么办？</summary>
+          <div class="hj-faq__ans">每一条内容下方都提供反馈入口，也可以在联系页面提交具体条目与说明。我们承诺在收到反馈后三个工作日内初步核查，并在核查完成后向反馈人说明处理结果。</div>
+        </details>
+        <details>
+          <summary>平台的更新节奏是怎样的？</summary>
+          <div class="hj-faq__ans">品牌自制专题通常每周更新一集，社区投稿内容每日更新，企业动态与内容生态报告按月发布。专题页会标注当前状态与已更新集数，方便观众跟进。</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 联系 / 投稿 ========== -->
+  <section class="hj-section" id="hj-contact">
+    <div class="hj-wrap">
+      <div class="hj-cta-band">
+        <div>
+          <span class="hj-eyebrow" style="color:var(--hj-accent-2);">CONTACT · 联系我们</span>
+          <h2 style="margin-top:10px;">有好故事，就交给我们一起记录</h2>
+          <p>无论你是创作者、机构还是普通观众，都欢迎通过以下方式联系海角黑料网站。投稿、合作、反馈建议，我们都会认真阅读并回复。</p>
+          <div class="hj-contact-list">
+            <span><b>投稿与合作：</b>editor@haijiao-video.example</span>
+            <span><b>内容反馈：</b>review@haijiao-video.example</span>
+            <span><b>工作时间：</b>周一至周五 10:00–19:00</span>
+            <span><b>线下地址：</b>南方某滨海城市 · 海角创意园 3 号楼</span>
+          </div>
+        </div>
+        <div class="hj-cta-actions">
+          <button class="hj-btn hj-btn--primary" type="button" id="hjOpenSubmit3">我要投稿</button>
+          <button class="hj-btn hj-btn--ghost" type="button" data-hj-share="海角黑料网站 品牌官网">分享本页</button>
+          <button class="hj-btn hj-btn--ghost" type="button" id="hjOpenReport">反馈问题</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- ========== 页脚 ========== -->
+<footer class="hj-footer">
+  <div class="hj-wrap">
+    <div class="hj-footer__grid">
+      <div>
+        <div class="hj-footer__brand">
+          <span class="hj-brand__mark">海</span>
+          <span class="hj-brand__text">
+            <span class="hj-brand__name">海角黑料</span>
+            <span class="hj-brand__sub">HAIJIAO · VIDEO</span>
+          </span>
+        </div>
+        <p style="line-height:1.8;">海角黑料网站官方网站，专注真实故事与原创影像的持续运营平台。我们以人物访谈、城市现场与第一手记录为内容主线，为创作者与观众提供值得信赖的记录空间。</p>
+      </div>
+      <div>
+        <h4>内容导航</h4>
+        <div class="hj-footer__links">
+          <a href="#hj-home">首页</a>
+          <a href="#hj-focus">影像焦点</a>
+          <a href="#hj-videos">社区热门</a>
+          <a href="#hj-topics">专题企划</a>
+        </div>
+      </div>
+      <div>
+        <h4>关于平台</h4>
+        <div class="hj-footer__links">
+          <a href="#hj-creators">创作者矩阵</a>
+          <a href="#hj-updates">企业动态</a>
+          <a href="#hj-faq">帮助中心</a>
+          <a href="#hj-contact">联系与投稿</a>
+        </div>
+      </div>
+      <div>
+        <h4>官方信息</h4>
+        <div class="hj-footer__links">
+          <span>品牌名称：海角黑料</span>
+          <span>运营主体：海角影像文化传播有限公司</span>
+          <span>内容备案号：HJ-VC-2026-0119</span>
+          <span>持续运营：2017 — 2026</span>
+        </div>
+      </div>
+    </div>
+    <div class="hj-footer__bottom">
+      <span>© 2026 海角黑料网站 版权所有 · 原创内容受版权保护</span>
+      <span>本页内容为品牌展示用途 · 官方发布 · 转载请先取得授权</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== 回到顶部 ========== -->
+<button class="hj-backtop" type="button" id="hjBackTop" aria-label="回到顶部">↑</button>
+
+<!-- ========== Toast ========== -->
+<div class="hj-toast" id="hjToast" role="status" aria-live="polite"></div>
+
+<!-- ========== 通用弹窗 ========== -->
+<div class="hj-modal" id="hjModal" role="dialog" aria-modal="true" aria-labelledby="hjModalTitle">
+  <div class="hj-modal__box">
+    <h3 id="hjModalTitle">提示</h3>
+    <div id="hjModalBody"></div>
+    <div class="hj-modal__foot">
+      <button class="hj-btn hj-btn--line hj-btn--sm" type="button" id="hjModalClose">关闭</button>
+      <button class="hj-btn hj-btn--primary hj-btn--sm" type="button" id="hjModalOk">确定</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Toast ---------- */
+  var toastEl = document.getElementById('hjToast');
+  var toastTimer = null;
+  function showToast(msg){
+    toastEl.textContent = msg;
+    toastEl.classList.add('is-show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function(){
+      toastEl.classList.remove('is-show');
+    }, 2200);
+  }
+
+  /* ---------- 公告条轮播 ---------- */
+  var track = document.getElementById('hjNoticeTrack');
+  var noticeItems = track ? Array.prototype.slice.call(track.children) : [];
+  var noticeIndex = 0;
+  function renderNotice(){
+    if(!track) return;
+    track.style.transform = 'translateX(' + (-noticeIndex * 100) + '%)';
+  }
+  var nextBtn = document.getElementById('hjNoticeNext');
+  if(nextBtn){
+    nextBtn.addEventListener('click', function(){
+      noticeIndex = (noticeIndex + 1) % noticeItems.length;
+      renderNotice();
+    });
+  }
+  var noticeTimer = setInterval(function(){
+    noticeIndex = (noticeIndex + 1) % Math.max(noticeItems.length,1);
+    renderNotice();
+  }, 7000);
+
+  /* ---------- 移动端导航折叠 ---------- */
+  var burger = document.getElementById('hjBurger');
+  var nav = document.getElementById('hjNav');
+  if(burger && nav){
+    burger.addEventListener('click', function(){
+      var open = nav.classList.toggle('is-open');
+      burger.classList.toggle('is-open', open);
+      burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    nav.addEventListener('click', function(e){
+      if(e.target && e.target.classList.contains('hj-nav__link')){
+        nav.classList.remove('is-open');
+        burger.classList.remove('is-open');
+        burger.setAttribute('aria-expanded','false');
+      }
+    });
+  }
+
+  /* ---------- 导航高亮（滚动） ---------- */
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.hj-nav__link'));
+  var sections = navLinks.map(function(a){
+    return document.querySelector(a.getAttribute('href'));
+  });
+  window.addEventListener('scroll', function(){
+    var pos = window.scrollY + 140;
+    var idx = 0;
+    sections.forEach(function(sec, i){
+      if(sec && sec.offsetTop <= pos) idx = i;
+    });
+    navLinks.forEach(function(a, i){
+      a.classList.toggle('is-active', i === idx);
+    });
+    backTop.classList.toggle('is-show', window.scrollY > 500);
+  }, {passive:true});
+
+  /* ---------- 搜索 ---------- */
+  var searchInput = document.getElementById('hjSearchInput');
+  var searchBtn = document.getElementById('hjSearchBtn');
+  var searchFb = document.getElementById('hjSearchFeedback');
+  var searchMap = {
+    '人物': '人物访谈 · 共 86 条内容',
+    '访谈': '人物访谈 · 共 86 条内容',
+    '城市': '城市现场 · 共 132 条内容',
+    '夜': '海角夜航专题 · 已更新 6 集',
+    '记录': '第一手记录 · 共 64 条内容',
+    '剪辑': '创作幕后 · 海角剪辑室 210 条',
+    '旧物': '旧物来处专题 · 已收 38 条',
+    '林小树': '创作者 林小树 · 作品 86 条',
+    '阿岚': '创作者 阿岚记录 · 作品 132 条'
+  };
+  function doSearch(){
+    if(!searchInput || !searchFb) return;
+    var q = searchInput.value.trim();
+    if(!q){
+      searchFb.textContent = '请输入内容、创作者或专题名称';
+      searchFb.classList.add('is-show');
+      return;
+    }
+    var hit = null;
+    Object.keys(searchMap).forEach(function(k){
+      if(!hit && q.indexOf(k) !== -1){ hit = searchMap[k]; }
+    });
+    searchFb.textContent = hit ? ('找到相关结果：' + hit) : ('暂未找到“' + q + '”的直接结果，可尝试：人物、城市、记录、剪辑');
+    searchFb.classList.add('is-show');
+    showToast('已为你检索社区内容');
+  }
+  if(searchBtn) searchBtn.addEventListener('click', doSearch);
+  if(searchInput){
+    searchInput.addEventListener('keydown', function(e){
+      if(e.key === 'Enter'){ e.preventDefault(); doSearch(); }
+    });
+    searchInput.addEventListener('input', function(){
+      if(searchFb) searchFb.classList.remove('is-show');
+    });
+  }
+
+  /* ---------- 标签筛选 ---------- */
+  var filterWrap = document.getElementById('hjFilters');
+  var cards = Array.prototype.slice.call(document.querySelectorAll('#hjVideoGrid .hj-video-card'));
+  if(filterWrap){
+    filterWrap.addEventListener('click', function(e){
+      var btn = e.target.closest('.hj-filter');
+      if(!btn) return;
+      Array.prototype.forEach.call(filterWrap.children, function(b){ b.classList.remove('is-on'); });
+      btn.classList.add('is-on');
+      var f = btn.getAttribute('data-filter');
+      cards.forEach(function(c){
+        var show = (f === '全部') || (c.getAttribute('data-cat') === f);
+        c.style.display = show ? '' : 'none';
+      });
+      showToast(f === '全部' ? '已展示全部内容' : ('已筛选：' + f));
+    });
+  }
+
+  /* ---------- 点赞 ---------- */
+  document.addEventListener('click', function(e){
+    var like = e.target.closest('[data-hj-like]');
+    if(like){
+      var t = like.textContent.trim();
+      var m = t.match(/[\d.]+[k]?/);
+      var num = m ? m[0] : '0';
+      like.classList.toggle('is-liked');
+      if(like.classList.contains('is-liked')){
+        like.textContent = '♥ ' + num;
+        showToast('已点赞，感谢你的支持');
+      }else{
+        like.textContent = '♡ ' + num;
+        showToast('已取消点赞');
+      }
+      return;
+    }
+    var save = e.target.closest('[data-hj-save]');
+    if(save){
+      save.classList.toggle('is-saved');
+      save.textContent = save.classList.contains('is-saved') ? '★ 已收藏' : '☆ 收藏';
+      showToast(save.classList.contains('is-saved') ? '已加入收藏夹' : '已取消收藏');
+      return;
+    }
+  });
+
+  /* ---------- 弹窗基础 ---------- */
+  var modal = document.getElementById('hjModal');
+  var modalTitle = document.getElementById('hjModalTitle');
+  var modalBody = document.getElementById('hjModalBody');
+  var modalOk = document.getElementById('hjModalOk');
+  function openModal(title, html, okText){
+    modalTitle.textContent = title;
+    modalBody.innerHTML = html;
+    modalOk.textContent = okText || '确定';
+    modal.classList.add('is-open');
+  }
+  function closeModal(){
+    modal.classList.remove('is-open');
+  }
+  document.getElementById('hjModalClose').addEventListener('click', closeModal);
+  modalOk.addEventListener('click', function(){
+    var input = modalBody.querySelector('input,textarea');
+    if(input){
+      showToast('已收到你的提交，我们会尽快回复');
+    }
+    closeModal();
+  });
+  modal.addEventListener('click', function(e){
+    if(e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', function(e){
+    if(e.key === 'Escape') closeModal();
+  });
+
+  /* ---------- 分享 ---------- */
+  function sharePanel(titleText){
+    var html = '' +
+      '<p>把「' + titleText + '」分享给朋友，一起看真实记录。</p>' +
+      '<div class="hj-share-row">' +
+      '<button class="hj-share-btn" type="button" data-hj-copy>复制链接</button>' +
+      '<button class="hj-share-btn" type="button" data-hj-share-wechat>微信</button>' +
+      '<button class="hj-share-btn" type="button" data-hj-share-weibo>微博</button>' +
+      '</div>';
+    openModal('分享内容', html, '完成');
+  }
+  document.addEventListener('click', function(e){
+    var s = e.target.closest('[data-hj-share]');
+    if(s){
+      sharePanel(s.getAttribute('data-hj-share'));
+    }
+  });
+
+  /* ---------- 复制链接 / 分享渠道 ---------- */
+  document.addEventListener('click', function(e){
+    if(e.target.closest('[data-hj-copy]')){
+      var link = 'https://haijiao-video.example/';
+      if(navigator.clipboard && navigator.clipboard.writeText){
+        navigator.clipboard.writeText(link).then(function(){
+          showToast('链接已复制，去分享给朋友吧');
+        }).catch(function(){
+          showToast('复制失败，请手动选择页面地址');
+        });
+      }else{
+        showToast('当前环境不支持自动复制，请手动复制页面地址');
+      }
+      return;
+    }
+    if(e.target.closest('[data-hj-share-wechat]')){
+      showToast('请打开微信，粘贴链接分享给好友');
+      return;
+    }
+    if(e.target.closest('[data-hj-share-weibo]')){
+      showToast('已生成微博分享文案，可前往微博发布');
+      return;
+    }
+  });
+
+  /* ---------- 评论弹窗 ---------- */
+  document.addEventListener('click', function(e){
+    var c = e.target.closest('[data-hj-open-comment]');
+    if(c){
+      var name = c.getAttribute('data-hj-open-comment');
+      var html = '' +
+        '<p>正在讨论：' + name + '</p>' +
+        '<div class="hj-modal__field"><label>你的看法（文明发言）</label>' +
+        '<textarea id="hjCommentText" placeholder="说说你从这条内容里看到了什么"></textarea></div>';
+      openModal('参与讨论', html, '发布');
+    }
+  });
+
+  /* ---------- 创作者简介弹窗 ---------- */
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('[data-hj-creator]');
+    if(a){
+      var parts = a.getAttribute('data-hj-creator').split('|');
+      var html = '' +
+        '<h3>' + parts[0] + '</h3>' +
+        '<p style="margin-top:6px;color:var(--hj-accent);font-weight:700;font-size:13px;">' + (parts[1] || '') + '</p>' +
+        '<p style="margin-top:10px;">' + (parts[2] || '') + '</p>' +
+        '<p style="margin-top:10px;font-size:12.5px;color:#98a0b3;">已实名认证 · 内容规范学习完成 · 官方签约创作者</p>';
+      openModal('创作者档案', html, '关注 TA');
+    }
+  });
+
+  /* ---------- 投稿弹窗 ---------- */
+  var submitHtml = '' +
+    '<p>请填写基本信息，编辑团队会在五个工作日内与你联系。</p>' +
+    '<div class="hj-modal__field"><label>称呼</label><input type="text" placeholder="如何称呼你"></div>' +
+    '<div class="hj-modal__field"><label>联系方式</label><input type="text" placeholder="邮箱或常用联系方式"></div>' +
+    '<div class="hj-modal__field"><label>作品方向</label><input type="text" placeholder="例如：人物访谈 / 城市现场 / 第一手记录"></div>' +
+    '<div class="hj-modal__field"><label>内容简述</label><textarea placeholder="用两三句话讲讲你想记录什么"></textarea></div>';
+  ['hjOpenSubmit1','hjOpenSubmit2','hjOpenSubmit3'].forEach(function(id){
+    var el = document.getElementById(id);
+    if(el){
+      el.addEventListener('click', function(){
+        openModal(id === 'hjOpenSubmit2' ? '提交合作意向' : '投稿入口', submitHtml, '提交');
+      });
+    }
+  });
+
+  /* ---------- 反馈弹窗 ---------- */
+  var reportBtn = document.getElementById('hjOpenReport');
+  if(reportBtn){
+    reportBtn.addEventListener('click', function(){
+      var html = '' +
+        '<p>请描述你遇到的问题或需要反馈的内容条目，我们会认真核查。</p>' +
+        '<div class="hj-modal__field"><label>问题类型</label><input type="text" placeholder="例如：信息不准确 / 内容不适 / 使用问题"></div>' +
+        '<div class="hj-modal__field"><label>详细说明</label><textarea placeholder="请尽量描述清楚，便于我们定位"></textarea></div>';
+      openModal('反馈问题', html, '提交反馈');
+    });
+  }
+
+  /* ---------- 回到顶部 ---------- */
+  var backTop = document.getElementById('hjBackTop');
+  backTop.addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+})();
+</script>
+</body>
+          </html>
